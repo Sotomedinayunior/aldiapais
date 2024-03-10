@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Estilo predeterminado del editor de texto
 
 function CreatePostForm() {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [editorContent, setEditorContent] = useState("");
+
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [status, setStatus] = useState("publish"); // Estado predeterminado: publicado
@@ -49,7 +52,7 @@ function CreatePostForm() {
       // Crear la entrada con la URL de la imagen destacada
       const postData = {
         title,
-        content,
+        editorContent,
         categories: [selectedCategory],
         status,
         featured_media: imageResponse.data.id, // ID de la imagen subida
@@ -73,64 +76,67 @@ function CreatePostForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto my-8">
-      <div className="mb-4">
-        <label className="block mb-2">Título:</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Contenido:</label>
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Categoría:</label>
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+    <div className="">
+      <form onSubmit={handleSubmit} className="">
+        <div className="mb-4">
+          <label className="block mb-2">Título:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-5">
+          <label className="block mb-2">Contenido:</label>
+          <ReactQuill
+            theme="snow"
+            value={editorContent}
+            onChange={setEditorContent}
+            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500 h-1000"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Categoría:</label>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Imagen destacada:</label>
+          <input
+            type="file"
+            onChange={handleImageChange}
+            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Estado:</label>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+          >
+            <option value="publish">Publicado</option>
+            <option value="draft">No publicado</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Imagen destacada:</label>
-        <input
-          type="file"
-          onChange={handleImageChange}
-          className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Estado:</label>
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        >
-          <option value="publish">Publicado</option>
-          <option value="draft">No publicado</option>
-        </select>
-      </div>
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Crear entrada
-      </button>
-    </form>
+          Crear entrada
+        </button>
+      </form>
+    </div>
   );
 }
 
