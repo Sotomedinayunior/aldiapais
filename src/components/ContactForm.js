@@ -13,6 +13,7 @@ function CreatePostForm() {
   const [status, setStatus] = useState("publish"); // Estado predeterminado: publicado
   const [featuredImage, setFeaturedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -32,6 +33,10 @@ function CreatePostForm() {
     const imageFile = e.target.files[0];
     setFeaturedImage(imageFile);
     setImagePreview(URL.createObjectURL(imageFile));
+  };
+
+  const handleEditorChange = (content) => {
+    setEditorContent(content);
   };
 
   const handleSubmit = async (e) => {
@@ -56,7 +61,7 @@ function CreatePostForm() {
       // Crear la entrada con la URL de la imagen destacada
       const postData = {
         title,
-        editorContent,
+        content: editorContent,
         categories: [selectedCategory],
         status,
         featured_media: imageResponse.data.id, // ID de la imagen subida
@@ -74,6 +79,17 @@ function CreatePostForm() {
       );
 
       console.log("Entrada creada:", postResponse.data);
+
+      // Mostrar la alerta de éxito
+      setShowAlert(true);
+
+      // Limpiar el formulario después de mostrar la alerta
+      setTitle("");
+      setEditorContent("");
+      setSelectedCategory("");
+      setStatus("publish");
+      setFeaturedImage(null);
+      setImagePreview(null);
     } catch (error) {
       console.error("Error al crear la entrada:", error);
     }
@@ -81,6 +97,15 @@ function CreatePostForm() {
 
   return (
     <div className="Box-content">
+      {/* Alerta de éxito */}
+      {showAlert && (
+        <div
+          className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
+          role="alert"
+        >
+          <p className="font-bold">¡Entrada creada correctamente!</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="form">
         <div className="mb-6">
           <label className="block mb-2">Título:</label>
@@ -97,7 +122,7 @@ function CreatePostForm() {
           <ReactQuill
             theme="snow"
             value={editorContent}
-            onChange={setEditorContent}
+            onChange={handleEditorChange}
             className="Content-Editor"
             // style={{ height: "100px" }}
           />
