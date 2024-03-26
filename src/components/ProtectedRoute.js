@@ -4,7 +4,7 @@ export default function ProtectedRouter({ children }) {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    return <Navigate to="/aldiapais/login" />;
+    return <Navigate to="/login" />;
   }
   return children;
 }

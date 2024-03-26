@@ -8,7 +8,7 @@ function NavBar() {
     localStorage.removeItem("token");
 
     // Redirigir a otra ruta (por ejemplo, la página de inicio de sesión)
-    navigate("/aldiapais/login");
+    navigate("/login");
   };
 
   return (

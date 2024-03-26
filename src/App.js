@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Routes>
-      <Route path="aldiapais/login" element={<Login />}></Route>
+      <Route path="/login" element={<Login />}></Route>
       <Route
         path="/aldiapais"
         element={
