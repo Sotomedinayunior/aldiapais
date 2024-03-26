@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {
-  const history = useNavigate();
-
+  const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.clear();
-    history("/aldiapais", { replace: true });
+    // Aquí puedes borrar el token o realizar cualquier otra acción necesaria
+    // Por ejemplo, borrar el token almacenado en localStorage:
+    localStorage.removeItem("token");
+
+    // Redirigir a otra ruta (por ejemplo, la página de inicio de sesión)
+    navigate("/aldiapais/login");
   };
+
   return (
     <>
       <nav
@@ -69,7 +73,7 @@ function NavBar() {
                   href="#"
                   data-twe-nav-link-ref
                 >
-                  Dashboard
+                  Al dia pais
                 </a>
               </li>
             </ul>
@@ -77,25 +81,17 @@ function NavBar() {
             <div className="flex items-center">
               <button
                 type="button"
-                data-twe-ripple-init
-                data-twe-ripple-color="light"
-                className="me-3 inline-block rounded px-2 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:text-secondary-600 dark:hover:text-secondary-500 dark:focus:text-secondary-500 dark:active:text-secondary-500"
-              >
-                Login
-              </button>
-              <button
-                type="button"
                 href="/logout"
                 data-twe-ripple-init
                 data-twe-ripple-color="light"
+                onClick={handleLogout}
                 className="me-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
               >
-                Sign up for free
+                Logout
               </button>
               <button
                 type="button"
                 data-twe-ripple-init
-                onClick={handleLogout}
                 data-twe-ripple-color="light"
                 className="me-3 inline-block rounded bg-neutral-800 px-3 py-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-dark-3 transition duration-150 ease-in-out hover:bg-neutral-700 hover:shadow-dark-2 focus:bg-neutral-700 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-dark-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
               >

@@ -8,7 +8,7 @@ function Login() {
   const ApiUrl = process.env.REACT_APP_API_URL_Login;
 
   const navigate = useNavigate();
-  const tokenDefault = localStorage.getItem("token");
+  // const tokenDefault = localStorage.getItem("token");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -58,7 +58,7 @@ function Login() {
       const token = response.data.data.jwt;
 
       localStorage.setItem("token", token);
-      window.location.href = "/aldiapais";
+      navigate('/aldiapais');
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       setErrors({

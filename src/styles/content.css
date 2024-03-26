@@ -1,0 +1,11 @@
+.Box-content {
+  width: 100%;
+
+  padding: 2vh;
+  display: grid;
+  place-content: center;
+  background-color: rgb(246, 246, 246);
+}
+.form {
+  max-width: 100%;
+}

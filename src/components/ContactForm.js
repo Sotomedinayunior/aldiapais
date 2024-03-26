@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
+import "../styles/content.css";
 import "react-quill/dist/quill.snow.css"; // Estilo predeterminado del editor de texto
 
 function CreatePostForm() {
@@ -11,6 +12,7 @@ function CreatePostForm() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [status, setStatus] = useState("publish"); // Estado predeterminado: publicado
   const [featuredImage, setFeaturedImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -27,7 +29,9 @@ function CreatePostForm() {
   }, []);
 
   const handleImageChange = (e) => {
-    setFeaturedImage(e.target.files[0]);
+    const imageFile = e.target.files[0];
+    setFeaturedImage(imageFile);
+    setImagePreview(URL.createObjectURL(imageFile));
   };
 
   const handleSubmit = async (e) => {
@@ -76,9 +80,9 @@ function CreatePostForm() {
   };
 
   return (
-    <div className="">
-      <form onSubmit={handleSubmit} className="">
-        <div className="mb-4">
+    <div className="Box-content">
+      <form onSubmit={handleSubmit} className="form">
+        <div className="mb-6">
           <label className="block mb-2">Título:</label>
           <input
             type="text"
@@ -87,16 +91,20 @@ function CreatePostForm() {
             className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div className="mb-5">
+        <div className="mb-8">
           <label className="block mb-2">Contenido:</label>
+
           <ReactQuill
             theme="snow"
             value={editorContent}
             onChange={setEditorContent}
-            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500 h-1000"
+            className="Content-Editor"
+            // style={{ height: "100px" }}
           />
+          {""}
         </div>
-        <div className="mb-4">
+
+        <div className="mb-6">
           <label className="block mb-2">Categoría:</label>
           <select
             value={selectedCategory}
@@ -110,15 +118,23 @@ function CreatePostForm() {
             ))}
           </select>
         </div>
-        <div className="mb-4">
+
+        <div className="mb-6">
           <label className="block mb-2">Imagen destacada:</label>
           <input
             type="file"
             onChange={handleImageChange}
             className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
           />
+          {imagePreview && ( // Mostrar la previsualización si hay una imagen seleccionada
+            <img
+              src={imagePreview}
+              alt="Featured Image"
+              className="mt-3 w-full rounded max-w-xs h-auto"
+            />
+          )}
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label className="block mb-2">Estado:</label>
           <select
             value={status}

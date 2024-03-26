@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route path="aldiapais/login" element={<Login />}></Route>
       <Route
-        path="aldiapais"
+        path="/aldiapais"
         element={
           <ProtectedRoute>
             {" "}
