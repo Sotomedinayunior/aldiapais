@@ -119,7 +119,7 @@ export default function Card({ post }) {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            AUTH_KEY: "chezaadkey",
+            AUTH_KEY: "aldiakey",
             // Incluye el token en los encabezados
           },
         }
