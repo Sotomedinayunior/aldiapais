@@ -38,7 +38,7 @@ function NavBar() {
             <img src={Logo} alt="Logo" className="Img" />{" "}
           </a>
           <h1>
-            <span className="Saludo">{getGreeting()} </span> Clasdialisa
+            <span className="Saludo">{getGreeting()} </span> Gladialisa
           </h1>
         </div>
         <div className="column2">
