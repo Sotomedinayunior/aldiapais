@@ -13,13 +13,14 @@ function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    AUTH_KEY: "chezaadkey",
+    AUTH_KEY: "aldiakey",
   });
 
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false); // Estado para mostrar la animación de carga
 
   const handleChange = (e) => {
     setFormData({
@@ -52,6 +53,7 @@ function Login() {
     if (!validateForm()) {
       return;
     }
+    setLoading(true); // Mostrar la animación de carga
 
     try {
       const response = await axios.post(`${ApiUrl}`, formData);
@@ -69,11 +71,8 @@ function Login() {
   };
 
   return (
-    <div
-      className="flex justify-center items-center h-screen bg-gray-800"
-      id="BG"
-    >
-      <div className="max-w-md w-full space-y-8">
+    <div className="flex justify-center items-center h-screen ">
+      <div className="max-w-md w-full space-y-8 p-8 bg-gray-800">
         <figure className="max-w-lg">
           <img
             className="h-auto max-w-lg mx-auto"
@@ -142,6 +141,13 @@ function Login() {
             >
               Iniciar sesión
             </button>
+            <div className="flex justify-center">
+              {loading && (
+                <div className="fixed top-0 left-0 z-50 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50">
+                  <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+                </div>
+              )}
+            </div>
           </div>
         </form>
       </div>
