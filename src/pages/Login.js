@@ -69,7 +69,10 @@ function Login() {
   };
 
   return (
-    <div className="" id="BG">
+    <div
+      className="flex justify-center items-center h-screen bg-gray-800"
+      id="BG"
+    >
       <div className="max-w-md w-full space-y-8">
         <figure className="max-w-lg">
           <img
