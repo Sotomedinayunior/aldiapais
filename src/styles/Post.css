@@ -1,0 +1,89 @@
+.card-container {
+  max-width: 450px;
+  height: auto;
+  border-radius: 5px;
+  padding: 0px 0px 15px 0;
+  margin: 5px;
+
+  background-color: #f1f1f1;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+.image {
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+
+  height: auto;
+}
+.title {
+  font-size: calc(1em + 2px);
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  padding: 0px 0px 0px 4px;
+  text-transform: capitalize;
+
+  line-height: 25px;
+  hyphens: all;
+  word-spacing: 1px;
+
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0 0 0;
+
+  /* flex-wrap: wrap; */
+
+  padding: 0px 5px 0px 5px;
+}
+.Btn-link {
+  text-decoration: none;
+  background-color: #d71e1f;
+  color: white;
+  padding: 7px 20px 7px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0px 5px 0px 5px;
+}
+.date {
+  font-size: 1em;
+  font-weight: bold;
+  color: #333;
+}
+.container-button {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Acciones {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+.Btn-Actualizar {
+  text-decoration: none;
+  background-color: #076902;
+  color: white;
+  padding: 7px 20px 7px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0px 5px 0px 5px;
+}
+.Btn-Cancelar {
+  text-decoration: none;
+  background-color: #d71e1f;
+  color: white;
+  padding: 7px 20px 7px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0px 5px 0px 5px;
+}

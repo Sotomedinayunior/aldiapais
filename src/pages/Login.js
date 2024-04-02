@@ -58,7 +58,7 @@ function Login() {
       const token = response.data.data.jwt;
 
       localStorage.setItem("token", token);
-      navigate('/aldiapais');
+      navigate("/aldiapais");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       setErrors({
@@ -69,7 +69,7 @@ function Login() {
   };
 
   return (
-    <div className="max-w-sm p-6 mt-20 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
+    <div className="" id="BG">
       <div className="max-w-md w-full space-y-8">
         <figure className="max-w-lg">
           <img

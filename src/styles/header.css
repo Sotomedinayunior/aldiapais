@@ -1,0 +1,56 @@
+.Header {
+  background-color: #282841;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+}
+.Img {
+  width: 80px;
+  height: auto;
+}
+.Container-Nav {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto;
+}
+.Column1 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.Column1 h1 {
+  color: white;
+  font-size: clamp(12px, 1.2rem, 2rem);
+  font-weight: 700;
+  margin: 0px 0px 0px 10px;
+}
+.Column2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Btn {
+  text-decoration: none;
+  background-color: #d71e1f;
+  color: white;
+  padding: 7px 15px 7px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin: 0px 5px 0px 5px;
+}
+.Saludo {
+  color: #d71e1f;
+}
+
+@media only screen and (max-width: 570px) {
+  .Container-Nav {
+    grid-template-columns: auto;
+    justify-content: center;
+
+    grid-auto-flow: row;
+  }
+  .Column1 {
+    margin-bottom: 20px;
+  }
+}

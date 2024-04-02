@@ -1,0 +1,14 @@
+.wrap {
+  padding: 10px 0px 18px 0px;
+  display: grid;
+  justify-content: space-around;
+
+  grid-template-columns: auto auto auto;
+  gap: 0.5rem;
+  width: 100%;
+}
+@media only screen and (max-width: 570px) {
+  .wrap {
+    grid-template-columns: auto;
+  }
+}
