@@ -81,14 +81,15 @@ export default function Card({ post }) {
     }
 
     try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          AUTH_KEY: "chezaadkey", // Incluir la clave de autenticación
+        },
+      };
       await axios.delete(
         `https://aldiapais.com/?rest_route=/wp/v2/posts/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Incluye el token en los encabezados de autorización
-            AUTH_KEY: "chezaadkey",
-          },
-        }
+        config
       );
       // Si la eliminación es exitosa, puedes hacer alguna acción adicional aquí, como recargar la lista de posts.
     } catch (error) {
@@ -113,14 +114,13 @@ export default function Card({ post }) {
         formData.append("featured_media", editedPostData.featured_media);
       }
 
-      await axios.post(
-        `https://aldiapais.com/wp-json/wp/v2/posts/${post.id}`,
+      await axios.put(
+        `https://aldiapais.com/?rest_route=/wp/v2/posts/${post.id}&JWT=${token}`,
         formData,
         {
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-            AUTH_KEY: "aldiakey",
-            // Incluye el token en los encabezados
           },
         }
       );
