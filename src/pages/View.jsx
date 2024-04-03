@@ -38,6 +38,20 @@ function View() {
     history("/login", { replace: true });
   };
 
+  const updatePost = async (updatedPost) => {
+    try {
+      // Lógica para actualizar el post en la API
+      // await axios.put(...)
+      // Después de actualizar el post en la API, actualizar localmente
+      const updatedPosts = data.map((post) =>
+        post.id === updatedPost.id ? updatedPost : post
+      );
+      setData(updatedPosts);
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
+  };
+
   if (loading) {
     return <h1>Cargando los posts...</h1>;
   }
@@ -47,7 +61,9 @@ function View() {
       <NavBar />
       <section className="wrap">
         {data.length > 0 ? (
-          data.map((item) => <Card key={item.id} post={item} />)
+          data.map((item) => (
+            <Card key={item.id} post={item} updatePost={updatePost} />
+          ))
         ) : (
           <h1>No hay posts disponibles</h1>
         )}

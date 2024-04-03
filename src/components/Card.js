@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 import ReactQuill from "react-quill";
 import "../styles/content.css";
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Card({ post }) {
   const [image, setImage] = useState("");
@@ -22,6 +23,7 @@ export default function Card({ post }) {
   });
   const [categories, setCategories] = useState([]);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -72,29 +74,28 @@ export default function Card({ post }) {
   };
 
   const handleDelete = async (id) => {
-    // Mostrar cuadro de confirmación
+    console.log(id);
+
     const confirmDelete = window.confirm(
       "¿Estás seguro de que deseas eliminar este post?"
     );
     if (!confirmDelete) {
-      return; // Si el usuario cancela, salir de la función
+      return;
     }
 
     try {
       const config = {
+        method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
-          AUTH_KEY: "chezaadkey", // Incluir la clave de autenticación
         },
       };
       await axios.delete(
-        `https://aldiapais.com/?rest_route=/wp/v2/posts/${id}`,
-        config
+        `https://aldiapais.com/?rest_route=/wp/v2/posts/${id}&JWT=${token}`
       );
-      // Si la eliminación es exitosa, puedes hacer alguna acción adicional aquí, como recargar la lista de posts.
+      navigate("/aldiapais");
     } catch (error) {
       console.error("Error deleting post:", error);
-      // Puedes manejar el error de alguna manera, como mostrando un mensaje al usuario.
     }
   };
 
@@ -125,6 +126,7 @@ export default function Card({ post }) {
         }
       );
       setShowModal(false);
+      navigate("/aldiapais");
 
       // Si la actualización es exitosa, puedes hacer alguna acción adicional aquí, como recargar la lista de posts.
     } catch (error) {
