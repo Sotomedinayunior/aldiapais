@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/aldiapais/static/css/main.5879855c.css",
-    "main.js": "/aldiapais/static/js/main.444f6878.js",
+    "main.css": "/aldiapais/static/css/main.82b7f8fd.css",
+    "main.js": "/aldiapais/static/js/main.a5372205.js",
     "static/js/453.74550280.chunk.js": "/aldiapais/static/js/453.74550280.chunk.js",
     "static/media/Logo.webp": "/aldiapais/static/media/Logo.b163cd949a2adcac3128.webp",
     "index.html": "/aldiapais/index.html",
-    "main.5879855c.css.map": "/aldiapais/static/css/main.5879855c.css.map",
-    "main.444f6878.js.map": "/aldiapais/static/js/main.444f6878.js.map",
+    "main.82b7f8fd.css.map": "/aldiapais/static/css/main.82b7f8fd.css.map",
+    "main.a5372205.js.map": "/aldiapais/static/js/main.a5372205.js.map",
     "453.74550280.chunk.js.map": "/aldiapais/static/js/453.74550280.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5879855c.css",
-    "static/js/main.444f6878.js"
+    "static/css/main.82b7f8fd.css",
+    "static/js/main.a5372205.js"
   ]
 }
