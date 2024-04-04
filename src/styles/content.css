@@ -5,6 +5,7 @@
   display: grid;
   place-content: center;
   background-color: rgb(246, 246, 246);
+  margin: 60px 0px 0px 0px;
 }
 .form {
   max-width: 100%;
