@@ -1,19 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../img/Logo.webp";
 import "../styles/header.css";
+
 function NavBar() {
   const navigate = useNavigate();
-  const handleLogout = () => {
-    // Aquí puedes borrar el token o realizar cualquier otra acción necesaria
-    // Por ejemplo, borrar el token almacenado en localStorage:
-    localStorage.removeItem("token");
+  const location = useLocation();
 
-    // Redirigir a otra ruta (por ejemplo, la página de inicio de sesión)
+  const handleLogout = () => {
+    localStorage.removeItem("token");
     navigate("/login");
   };
+
   const HandleView = () => {
-    navigate("/vista");
+    if (location.pathname === "/dashboard") {
+      navigate("/aldiapais");
+    } else if (location.pathname === "/aldiapais") {
+      navigate("/dashboard");
+    }
   };
+
   const getGreeting = () => {
     const currentTime = new Date().getHours();
     let greeting = "Hola";
@@ -28,14 +33,17 @@ function NavBar() {
 
     return greeting;
   };
+
+  const getViewButtonText = () => {
+    return location.pathname === "/dashboard" ? "Ver posts" : "Crear post";
+  };
+
   return (
     <header className="Header">
       <nav className="Container-Nav">
         <div className="Column1">
-          {" "}
           <a href="/aldiapais">
-            {" "}
-            <img src={Logo} alt="Logo" className="Img" />{" "}
+            <img src={Logo} alt="Logo" className="Img" />
           </a>
           <h1>
             <span className="Saludo">{getGreeting()} </span> Gladialisa
@@ -43,10 +51,10 @@ function NavBar() {
         </div>
         <div className="column2">
           <button onClick={HandleView} className="Btn">
-            Ver posts
+            {getViewButtonText()}
           </button>
           <button onClick={handleLogout} className="Btn">
-            Cerrar session
+            Cerrar sesión
           </button>
         </div>
       </nav>

@@ -3,7 +3,7 @@
   display: grid;
   justify-content: space-around;
 
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto;
   gap: 0.5rem;
   width: 100%;
 }

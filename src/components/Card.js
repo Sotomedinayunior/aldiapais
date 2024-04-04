@@ -84,16 +84,10 @@ export default function Card({ post }) {
     }
 
     try {
-      const config = {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
       await axios.delete(
         `https://aldiapais.com/?rest_route=/wp/v2/posts/${id}&JWT=${token}`
       );
-      navigate("/aldiapais");
+      window.location.href = "dashboard";
     } catch (error) {
       console.error("Error deleting post:", error);
     }
@@ -126,7 +120,7 @@ export default function Card({ post }) {
         }
       );
       setShowModal(false);
-      navigate("/aldiapais");
+      navigate("/dashboard");
 
       // Si la actualización es exitosa, puedes hacer alguna acción adicional aquí, como recargar la lista de posts.
     } catch (error) {

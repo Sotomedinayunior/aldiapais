@@ -7,14 +7,14 @@ import "../styles/view.css";
 function View() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const history = useNavigate();
+  // const history = useNavigate();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://aldiapais.com/?rest_route=/wp/v2/posts&JWT=${token}&per_page=16&orderby=date&order=desc`
+          `https://aldiapais.com/?rest_route=/wp/v2/posts&JWT=${token}&per_page=15&orderby=date&order=desc`
         );
 
         if (!response.ok) {
@@ -33,10 +33,10 @@ function View() {
     fetchData();
   }, [token]);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    history("/login", { replace: true });
-  };
+  // const handleLogout = () => {
+  //   localStorage.clear();
+  //   history("/login", { replace: true });
+  // };
 
   const updatePost = async (updatedPost) => {
     try {
