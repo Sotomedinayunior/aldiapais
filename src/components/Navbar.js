@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import Logo from "../img/Logo.webp";
 import "../styles/header.css";
 
@@ -11,12 +11,10 @@ function NavBar() {
     navigate("/login");
   };
 
-  const HandleView = () => {
-    if (location.pathname === "/dashboard") {
-      navigate("/aldiapais");
-    } else if (location.pathname === "/aldiapais") {
-      navigate("/dashboard");
-    }
+  const toggleView = () => {
+    const nextPath =
+      location.pathname === "/dashboard" ? "/aldiapais" : "/dashboard";
+    navigate(nextPath);
   };
 
   const getGreeting = () => {
@@ -42,15 +40,15 @@ function NavBar() {
     <header className="Header">
       <nav className="Container-Nav">
         <div className="Column1">
-          <a href="/aldiapais">
+          <Link to="/aldiapais">
             <img src={Logo} alt="Logo" className="Img" />
-          </a>
+          </Link>
           <h1>
             <span className="Saludo">{getGreeting()} </span> Gladialisa
           </h1>
         </div>
         <div className="column2">
-          <button onClick={HandleView} className="Btn">
+          <button onClick={toggleView} className="Btn">
             {getViewButtonText()}
           </button>
           <button onClick={handleLogout} className="Btn">

@@ -2,6 +2,7 @@
   padding: 10px 0px 18px 0px;
   display: grid;
   justify-content: space-around;
+  margin-top: 60px;
 
   grid-template-columns: auto;
   gap: 0.5rem;
